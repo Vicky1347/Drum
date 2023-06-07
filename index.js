@@ -6,9 +6,8 @@ for(var i=0;i<7;i++)
     function handleclick()
     {
         var buttoninnerHTML= this.innerHTML;
-        
-        this.style.color="red";
         makesound(buttoninnerHTML);
+        buttonanimation(buttoninnerHTML);
 
     }
 
@@ -20,6 +19,7 @@ document.addEventListener("keydown",keyboard);
     function keyboard(event)
     {
         makesound(event.key);
+        buttonanimation(event.key);
     }
 
 
@@ -56,7 +56,7 @@ function makesound(key)
         case "k":
             var kick= new Audio('sounds/kick-bass.mp3');
             kick.play()
-            key.style.color="grey";
+            
 
             break;
 
@@ -66,9 +66,21 @@ function makesound(key)
         break;
 
         default:
-            alert("wrong click");
+            console.log(".");
     }
 }
+//adding animation to button
+function buttonanimation(currentkey)
+{
+    var activeButton= document.querySelector("." +currentkey); 
+    activeButton.classList.add("new");
+    setTimeout(function() {
+        activeButton.classList.remove("new");
+
+    },200);
+    
+}
+
 
 // alert("hello p");
 
